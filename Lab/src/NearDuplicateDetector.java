@@ -22,7 +22,7 @@ public class NearDuplicateDetector {
         Set<String> uniqueShingles = new HashSet<>(shingles);
         List<Integer> signature = new ArrayList<>(Collections.nCopies(numHashes, Integer.MAX_VALUE));
 
-        //Более детерминированная хэш-функция с регулируемым диапазоном
+        //хэш-функция с регулируемым диапазоном
         for (String shingle : uniqueShingles) {
             for (int i = 0; i < numHashes; i++) {
                 int hashValue = Math.abs((shingle.hashCode() + i * 31) % hashRange);
@@ -48,8 +48,15 @@ public class NearDuplicateDetector {
     }
 
     public static void main(String[] args) {
-        String text1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-        String text2 = "Lorem ipsum dolor sit amet, consectetur adipiscing.";
+        String text1 = "The most important kind of freedom is to be what you really are. " +
+                "You trade in your reality for a role. You trade in your sense for an act. " +
+                "You give up your ability to feel, and in exchange, put on a mask. " +
+                "There can’t be any large-scale revolution until there’s a personal revolution, " +
+                "on an individual level. It’s got to happen inside first.";
+        String text2 = "The most important kind of freedom is to be what you really are. " +
+                "You trade in your reality for a role. You trade in your sense for an act. " +
+                "You give up your ability to feel, and in exchange, put on a mask. " +
+                "There can’t be any large-scale revolution until there’s a personal revolution, ";
         String text3 = "This is a completely different text.";
 
         int numHashes = 500;       // Количество хэш-функций
